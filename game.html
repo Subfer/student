@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		#point {
+			position: fixed;
+			top: 50%;
+			left: 50%;
+			width: 30px;
+			height: 30px;
+			background-color: red;
+			border-radius: 50%;
+		}
+	</style>
+</head>
+<body>
+	<div id="point" onclick="newPosition()"></div>
+
+	<script>
+		function getXPositionOfElement() {
+			var x_position = Math.floor(Math.random() * (window.innerWidth-30));
+			return x_position;
+		}
+
+		function getYPositionOfElement() {
+			var y_position = Math.floor(Math.random() * (window.innerHeight-30));
+			return y_position;
+		}
+
+		function newPosition(){
+			let elem = document.getElementById('point');
+			elem.style.top = getYPositionOfElement() + 'px'; 
+			elem.style.left = getXPositionOfElement() + 'px';
+		}
+	</script>
+</body>
+</html>
