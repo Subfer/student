@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+		const ABOUT_EDGE = 'Microsoft today launched the first official version of its Edge browser with the Chromium engine for Windows 10';
+		function charCount (str) {
+			let arr = str.split(' ');
+			let resultLength = 0;
+			for (item of arr) {
+				if (item.length > resultLength) {
+					resultLength = item.length;
+					var value = item;
+				}
+			}
+			console.log(value + ' : ' + resultLength);
+		}
+
+		charCount(ABOUT_EDGE);
+
+	</script>
+</body>
+</html>
