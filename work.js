@@ -18,18 +18,16 @@ for (let i = 2; i <= 20; i++) {
 
 // Числа Фбаначчі від 0 до 100
 var fib = [0,1];
-var i = 2;
 
 console.log(fib[0]);
 
 console.log(fib[1]);
 
-while (i >= 2) {
+for (let i = 2;;i++) {
 
 	fib[i] = fib[i-1] + fib[i-2];	
 
 	if (fib[i] < 100) {
 		console.log(fib[i]);
 	} else break;
-	i++;
 }
