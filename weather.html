@@ -27,24 +27,23 @@
 	<script type="text/javascript">
 
 		window.onload = function () {
-			var APIKEY = 'e9356fc344c706d404ab6141a4bcd4fa';
-			var btn = document.getElementById("btn");
-			var icon = document.getElementById("icon-weather");			
-			var city = document.getElementById("info-city");
-			var temp = document.getElementById("temp");
-			var clouds = document.getElementById("clouds");
-			var wind = document.getElementById("wind");
-			var pressure = document.getElementById("pressure");
-			btn.addEventListener('click', fun, false);
+			const APIKEY = 'e9356fc344c706d404ab6141a4bcd4fa';
+			const btn = document.getElementById("btn");
+			const icon = document.getElementById("icon-weather");
+			const city = document.getElementById("info-city");
+			const temp = document.getElementById("temp");
+			const clouds = document.getElementById("clouds");
+			const wind = document.getElementById("wind");
+			const pressure = document.getElementById("pressure");
+			btn.addEventListener('click', fetchData, false);
 
-			function fun(){
-				var cityName = document.getElementById('search_str').value;
-				var httpRequest = new XMLHttpRequest();
+			function fetchData(){
+				const cityName = document.getElementById('search_str').value;
+				const httpRequest = new XMLHttpRequest();
 				httpRequest.open('GET',`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKEY}&units=metric`, true)
 				httpRequest.addEventListener('readystatechange', function(){
 					if(httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200){
-						var obj = JSON.parse(httpRequest.responseText);
-						console.log(obj);
+						const obj = JSON.parse(httpRequest.responseText);
 						icon.src = `http://openweathermap.org/img/w/${obj.weather[0].icon}.png`;						
 						city.innerHTML = obj.name + ", " + obj.sys.country;
 						temp.innerHTML = "Temperature:" + " " + obj.main.temp + "&deg;C";
