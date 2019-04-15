@@ -63,7 +63,7 @@
 					clouds.innerHTML = "Clouds:" + " " + res.clouds.all + "%" + " " + res.weather[0].description;
 					pressure.innerHTML = "Pressure:" + " " + res.main.pressure + " " + "hpa";
 				}).catch(function(error) {  
-					alert('NOT FOUND', error);  
+					alert(error);  
 				});
 
 
