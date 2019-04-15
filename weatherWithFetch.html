@@ -36,19 +36,37 @@
 			const pressure = document.getElementById("pressure");
 			btn.addEventListener('click', fetchData, false);
 
+			function status(response) {  
+				if (response.status >= 200 && response.status < 300) {  
+					return Promise.resolve(response)  
+				} else {  
+					return Promise.reject(new Error(response.statusText))  
+				}  
+			}
+
+			function json(response) {  
+				return response.json()  
+			}
+
 			function fetchData(){
+
 				let cityName = document.getElementById('search_str').value;
 
-				fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKEY}&units=metric`).then(res => {
-					return res.json();
-				}).then(function(res) {
+				fetch(`http://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${APIKEY}&units=metric`)
+				.then(status)  
+				.then(json)  
+				.then(function(res) {
 					icon.src = `http://openweathermap.org/img/w/${res.weather[0].icon}.png`;						
 					city.innerHTML = res.name + ", " + res.sys.country;
 					temp.innerHTML = "Temperature:" + " " + res.main.temp + "&deg;C";
 					wind.innerHTML = "Wind:" + " " + res.wind.speed + " " + "m/s";
 					clouds.innerHTML = "Clouds:" + " " + res.clouds.all + "%" + " " + res.weather[0].description;
 					pressure.innerHTML = "Pressure:" + " " + res.main.pressure + " " + "hpa";
+				}).catch(function(error) {  
+					alert('NOT FOUND', error);  
 				});
+
+
 			}
 		}
 
